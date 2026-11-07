@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Ticketline is a human-reviewed support ticket triage application. Explore the project, recorded demo, architecture, and evaluation.">
+  <title>Ticketline — Support triage, thoughtfully built</title>
+  <style>
+    :root { --ink:#20352c; --green:#315f4d; --dark:#214737; --mint:#e6f0e5; --cream:#f6f8f3; --line:#dce6dd; --muted:#62766a; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--cream); font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:inherit; }
+    a:focus-visible, video:focus-visible { outline:3px solid #7da889; outline-offset:4px; }
+    .wrap { max-width:1160px; padding:0 28px; margin:auto; }
+    header { border-bottom:1px solid var(--line); background:#fff; }
+    nav { min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .logo { display:inline-flex; align-items:center; gap:10px; text-decoration:none; font-size:21px; font-weight:800; letter-spacing:-1px; }
+    .mark { display:grid; place-items:center; width:35px; height:35px; color:#fff; background:var(--green); border-radius:11px; font-size:22px; }
+    .navlinks { display:flex; align-items:center; gap:26px; font-size:13px; font-weight:650; }
+    .navlinks a { text-decoration:none; }
+    .navlinks a:hover, .text-link:hover { text-decoration:underline; }
+    .hero { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:58px; padding:83px 0 77px; }
+    .eyebrow { color:#688b75; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { line-height:1.15; letter-spacing:-.04em; }
+    h1 { font-size:clamp(42px,5.4vw,67px); margin:16px 0 20px; }
+    h1 em { color:#6e9b7c; font-style:normal; }
+    h2 { font-size:clamp(30px,3.4vw,42px); margin:12px 0 15px; }
+    h3 { font-size:19px; margin:13px 0 9px; }
+    .intro { color:var(--muted); font-size:17px; max-width:530px; }
+    .button-row { display:flex; flex-wrap:wrap; gap:10px; margin:29px 0 20px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:16px; border:1px solid var(--green); border-radius:9px; padding:12px 18px; text-decoration:none; font-weight:700; font-size:13px; }
+    .primary { color:white; background:var(--green); }
+    .primary:hover { background:var(--dark); }
+    .secondary { color:var(--green); background:transparent; }
+    .secondary:hover { background:var(--mint); }
+    .scope { color:#74877a; font-size:12px; line-height:1.55; max-width:540px; }
+    .screenshot-wrap { margin:0; background:#dfece0; padding:16px; border-radius:18px; box-shadow:0 16px 45px #315f4d12; }
+    .screenshot-wrap img { display:block; width:100%; height:auto; border-radius:9px; border:1px solid #d5e1d7; }
+    .caption { color:#688574; font-size:11px; margin:10px 0 0; }
+    .band { background:#e5efe5; border-block:1px solid #d7e5d8; }
+    .band-inner { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:15px; padding:18px 0; font-size:12px; font-weight:700; color:#506e5b; }
+    .band-inner span::before { content:"✳"; color:#7fa68a; margin-right:9px; }
+    section { padding:78px 0; }
+    .section-lede { color:var(--muted); max-width:660px; margin-bottom:30px; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .card { background:white; border:1px solid var(--line); border-radius:13px; padding:24px; }
+    .card-number { color:#8bab95; font-size:11px; font-weight:800; letter-spacing:.12em; }
+    .card p { color:var(--muted); font-size:14px; margin:0; }
+    .demo-section { background:#fff; border-block:1px solid var(--line); }
+    .demo-layout { display:grid; grid-template-columns:.76fr 1.24fr; gap:56px; align-items:start; }
+    video { display:block; width:100%; background:#17251e; border:1px solid var(--line); border-radius:12px; }
+    .note { background:#eff5ed; border-left:3px solid #91b49b; border-radius:0 8px 8px 0; color:#506c5a; padding:14px 16px; font-size:13px; }
+    .architecture { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:25px; }
+    .architecture .step { position:relative; background:white; border:1px solid var(--line); border-radius:11px; padding:20px; }
+    .step strong { display:block; font-size:14px; margin:9px 0 6px; }
+    .step p { color:var(--muted); font-size:12px; margin:0; }
+    .evidence { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:25px; }
+    .evidence strong { font-size:20px; }
+    .evidence p { color:var(--muted); margin:8px 0 0; font-size:14px; }
+    .start-section { background:#254d3d; color:white; }
+    .start-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+    .start-section .eyebrow { color:#aed2b5; }
+    .start-section .section-lede { color:#c5d9c9; }
+    pre { overflow:auto; background:#17362a; color:#e3f0e3; border:1px solid #416b56; border-radius:9px; padding:16px; font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace; white-space:pre; }
+    .code-label { margin:16px 0 5px; color:#c3dcc9; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+    .start-section code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .start-section a { color:#d6f0d8; }
+    .resources { display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+    .resource { text-decoration:none; padding:12px 16px; border:1px solid var(--line); border-radius:8px; background:white; font-size:13px; font-weight:700; }
+    .resource:hover { background:var(--mint); }
+    footer { border-top:1px solid var(--line); padding:25px 0; color:#819184; font-size:12px; }
+    footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    @media(max-width:800px) { .hero,.demo-layout,.start-layout { grid-template-columns:1fr; gap:30px; } .hero { padding:58px 0; } .grid { grid-template-columns:1fr; } .architecture { grid-template-columns:repeat(2,1fr); } section { padding:58px 0; } }
+    @media(max-width:540px) { .wrap { padding:0 20px; } nav { min-height:66px; } .navlinks { gap:14px; } .navlinks .optional { display:none; } .evidence,.architecture { grid-template-columns:1fr; } .band-inner { display:grid; grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <header><nav class="wrap" aria-label="Main navigation">
+    <a class="logo" href="#top"><span class="mark" aria-hidden="true">✳</span>ticketline</a>
+    <div class="navlinks"><a class="optional" href="#demo">Walkthrough</a><a class="optional" href="#architecture">Architecture</a><a href="https://github.com/llt3055/ticketline-ai-triage">View on GitHub ↗</a></div>
+  </nav></header>
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">AI-ASSISTED SUPPORT OPERATIONS</p>
+        <h1>Good support starts with a <em>clear next step.</em></h1>
+        <p class="intro">Ticketline turns incoming requests into structured suggestions, giving a support operator a clear place to review, correct, and approve each ticket.</p>
+        <div class="button-row"><a class="button primary" href="#demo">Watch the walkthrough <span aria-hidden="true">→</span></a><a class="button secondary" href="https://github.com/llt3055/ticketline-ai-triage">Explore the code ↗</a></div>
+        <p class="scope">Project showcase · Recorded deterministic demo · This page does not run the application or make AI calls.</p>
+      </div>
+      <figure class="screenshot-wrap"><img src="assets/dashboard.png" alt="Ticketline dashboard showing a ticket inbox, review status, and triage details." loading="eager"><figcaption class="caption">THE WORKSPACE / The local application in demo mode</figcaption></figure>
+    </div>
+    <div class="band"><div class="wrap band-inner"><span>Human review</span><span>Structured triage</span><span>SQLite persistence</span><span>Transparent evaluation</span></div></div>
+
+    <section class="wrap" aria-labelledby="features-heading">
+      <p class="eyebrow">A WORKFLOW BUILT FOR REVIEW</p><h2 id="features-heading">From request to resolution, with context.</h2>
+      <p class="section-lede">An operator remains in control: suggestions are editable, and the original result and review history remain available for inspection.</p>
+      <div class="grid">
+        <article class="card"><span class="card-number">01 / INTAKE</span><h3>Bring the work in</h3><p>Submit a ticket or import a small CSV batch. Filter the inbox by category, urgency, and review status.</p></article>
+        <article class="card"><span class="card-number">02 / TRIAGE</span><h3>Make the first pass</h3><p>Generate a category, urgency, and summary using deterministic demo rules or an explicitly selected live model.</p></article>
+        <article class="card"><span class="card-number">03 / REVIEW</span><h3>Keep a person in charge</h3><p>Correct and approve a suggestion, inspect the activity history, and retry failed suggestions when needed.</p></article>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-section"><div class="wrap demo-layout">
+      <div><p class="eyebrow">SEE IT IN ACTION</p><h2>A closer look at the workflow.</h2><p class="section-lede">Follow the recorded walkthrough through ticket creation, review, and approval in the local app.</p><p class="note"><strong>What you are watching:</strong> a recorded demonstration using simulated, deterministic triage—not live AI inference. The video contains sample tickets.</p></div>
+      <div><video controls preload="metadata" poster="assets/dashboard.png" aria-label="Recorded walkthrough of the Ticketline application in demo mode"><source src="assets/ticketline-walkthrough.webm" type="video/webm">Your browser does not support video playback. <a href="assets/ticketline-walkthrough.webm">Download the recorded walkthrough</a>.</video><p class="caption">RECORDED DEMO / Runs locally, with no provider requests</p></div>
+    </div></section>
+
+    <section id="architecture" class="wrap" aria-labelledby="architecture-heading">
+      <p class="eyebrow">UNDER THE HOOD</p><h2 id="architecture-heading">A small, inspectable system.</h2>
+      <p class="section-lede">The browser talks to a local API. The server stores tickets and coordinates triage; live inference happens only when configured and selected.</p>
+      <div class="architecture">
+        <div class="step"><span class="card-number">01</span><strong>Browser workspace</strong><p>Plain HTML, CSS, and JavaScript for intake and human review.</p></div>
+        <div class="step"><span class="card-number">02</span><strong>FastAPI backend</strong><p>Validates requests, manages the workflow, and serves the interface.</p></div>
+        <div class="step"><span class="card-number">03</span><strong>SQLite storage</strong><p>Persists tickets, original suggestions, and activity history.</p></div>
+        <div class="step"><span class="card-number">04</span><strong>Triage engine</strong><p>Runs deterministic demo rules or calls the configured model from the server.</p></div>
+      </div>
+    </section>
+
+    <section class="demo-section"><div class="wrap">
+      <p class="eyebrow">EVIDENCE &amp; LIMITATIONS</p><h2>Built to be questioned.</h2>
+      <p class="section-lede">The repository includes automated checks, evaluation scripts, datasets, and reports so that the work can be inspected and reproduced.</p>
+      <div class="evidence">
+        <div class="card"><strong>31 offline checks</strong><p>Application, storage, evaluation, and simulated SDK behavior are tested without making model requests. See the repository for the current test suite and how to run it.</p></div>
+        <div class="card"><strong>Separate synthetic datasets</strong><p>The development and holdout sets each contain 30 manually reviewed synthetic tickets. The live structured model has not been evaluated on the holdout; demo results are not AI accuracy claims.</p></div>
+      </div>
+    </div></section>
+
+    <section class="start-section"><div class="wrap start-layout">
+      <div><p class="eyebrow">RUN IT YOURSELF</p><h2>Try the complete app locally.</h2><p class="section-lede">Download or clone the project, install its dependencies, and start the server. Demo mode needs no credentials. Python 3.13 is the verified development environment.</p><p class="note">For live mode, run the server with <code>--live</code> and configure the provider API key on the server. Live requests may incur charges. The browser does not receive the provider key.</p><a href="https://github.com/llt3055/ticketline-ai-triage/releases/tag/v1.0.0">Get release v1.0.0 ↗</a></div>
+      <div><p class="code-label">Windows / PowerShell</p><pre><code>python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
+.\.venv\Scripts\python.exe run_server.py</code></pre>
+      <p class="code-label">macOS / Linux</p><pre><code>python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-lock.txt
+.venv/bin/python run_server.py</code></pre>
+      <p>Then open <code>http://127.0.0.1:8000</code> on your own computer.</p></div>
+    </div></section>
+
+    <section class="wrap"><p class="eyebrow">GO DEEPER</p><h2>Explore the project.</h2><p class="section-lede">Read the decisions, measurements, demo instructions, and portfolio notes behind the build.</p>
+      <div class="resources"><a class="resource" href="https://github.com/llt3055/ticketline-ai-triage/blob/main/docs/ARCHITECTURE.md">Architecture ↗</a><a class="resource" href="https://github.com/llt3055/ticketline-ai-triage/blob/main/docs/EVALUATION.md">Evaluation ↗</a><a class="resource" href="https://github.com/llt3055/ticketline-ai-triage/blob/main/docs/DEMO.md">Demo &amp; deployment ↗</a><a class="resource" href="https://github.com/llt3055/ticketline-ai-triage/blob/main/docs/PORTFOLIO.md">Portfolio notes ↗</a></div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>✳ &nbsp;Ticketline / Project showcase</span><span>Built for thoughtful support.</span></div></footer>
+</body>
+</html>
