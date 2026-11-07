@@ -1,0 +1,30 @@
+{"id":"dev-001","message":"I was charged twice for this month's subscription.","category":"billing","urgency":"normal"}
+{"id":"dev-002","message":"Please email a copy of last month's invoice for our records.","category":"billing","urgency":"low"}
+{"id":"dev-003","message":"My refund was approved, but the money has not arrived.","category":"billing","urgency":"normal"}
+{"id":"dev-004","message":"The amount on my bill is higher than the price I agreed to.","category":"billing","urgency":"normal"}
+{"id":"dev-005","message":"The card payment for my personal subscription was declined.","category":"billing","urgency":"normal"}
+{"id":"dev-006","message":"Could you send a receipt for a payment that already completed?","category":"billing","urgency":"low"}
+{"id":"dev-007","message":"I cancelled my subscription yesterday and was billed again today.","category":"billing","urgency":"normal"}
+{"id":"dev-008","message":"All company purchasing cards are being declined, so every employee is unable to place supply orders.","category":"billing","urgency":"high"}
+{"id":"dev-009","message":"A duplicate debit emptied our operating account; our entire delivery team cannot buy fuel to complete today's routes.","category":"billing","urgency":"high"}
+{"id":"dev-010","message":"I paid the invoice, but it is still marked unpaid.","category":"billing","urgency":"normal"}
+{"id":"dev-011","message":"I cannot sign in even though I reset my password.","category":"technical","urgency":"normal"}
+{"id":"dev-012","message":"The mobile app crashes when I open my profile.","category":"technical","urgency":"normal"}
+{"id":"dev-013","message":"My dashboard displays a blank screen instead of my saved projects.","category":"technical","urgency":"normal"}
+{"id":"dev-014","message":"The upload button returns an error whenever I select a file.","category":"technical","urgency":"normal"}
+{"id":"dev-015","message":"I cannot access my account on my laptop.","category":"technical","urgency":"normal"}
+{"id":"dev-016","message":"Our entire support team cannot sign in, so nobody can answer customer tickets.","category":"technical","urgency":"high"}
+{"id":"dev-017","message":"Every warehouse operator gets a server error when opening the dispatch app, stopping all shipments.","category":"technical","urgency":"high"}
+{"id":"dev-018","message":"Many customers are unable to open the checkout page and cannot place orders.","category":"technical","urgency":"high"}
+{"id":"dev-019","message":"Please send the instructions for resetting a password; my account currently works.","category":"technical","urgency":"low"}
+{"id":"dev-020","message":"Where is the guide to enabling two-factor authentication for sign-in? Nothing is broken.","category":"technical","urgency":"low"}
+{"id":"dev-021","message":"What are your customer support opening hours?","category":"other","urgency":"low"}
+{"id":"dev-022","message":"Where is your company headquarters located?","category":"other","urgency":"low"}
+{"id":"dev-023","message":"What languages does your customer support team speak?","category":"other","urgency":"low"}
+{"id":"dev-024","message":"How can I subscribe to your company newsletter?","category":"other","urgency":"low"}
+{"id":"dev-025","message":"Could you share the agenda for the upcoming user conference?","category":"other","urgency":"low"}
+{"id":"dev-026","message":"URGENT: please tell me the address of your public website. No service is affected.","category":"other","urgency":"low"}
+{"id":"dev-027","message":"Who should I contact about a partnership proposal?","category":"other","urgency":"low"}
+{"id":"dev-028","message":"Where can I read your accessibility statement?","category":"other","urgency":"low"}
+{"id":"dev-029","message":"My package has not arrived, and I need someone to check the delivery.","category":"other","urgency":"normal"}
+{"id":"dev-030","message":"I need help with my order, but I do not know what the problem is yet.","category":"other","urgency":"normal"}

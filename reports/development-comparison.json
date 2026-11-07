@@ -1,0 +1,24 @@
+{
+  "observed_on": "2026-11-07",
+  "dataset": "DEV_TICKETS in evaluate.py",
+  "dataset_role": "development",
+  "dataset_source": "Nine hand-written synthetic teaching examples, three per category",
+  "metric": "Exact category-label matches",
+  "rules": {
+    "correct": 6,
+    "total": 9,
+    "source": "Locally verified baseline run"
+  },
+  "ai": {
+    "model": "gpt-6-luna",
+    "correct": 9,
+    "total": 9,
+    "source": "User-provided terminal screenshot of evaluate.py --ai; not an agent-run live evaluation"
+  },
+  "scope": "Category-only classifier.py. The new structured triage prompt and urgency field have not been evaluated by this comparison.",
+  "limitations": [
+    "Small, known development set; not a held-out test",
+    "Synthetic examples do not establish real customer performance",
+    "This observation does not establish repeated-run reliability, latency, or cost"
+  ]
+}

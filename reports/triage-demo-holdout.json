@@ -1,0 +1,675 @@
+{
+  "report_schema_version": 1,
+  "mode": "demo",
+  "inference_source": "Deterministic simulation; no model inference or model-quality claim.",
+  "model_id": null,
+  "model_version_note": "No AI model used.",
+  "prompt_sha256": null,
+  "teaching_policy_sha256": "6ce598e9b05c245a378813c724b7b25cbe4059971548b360b4424d651c82a20a",
+  "implementation_sha256": {
+    "triage_demo.py": "66c36ee98d0f65cd5bbd890d6ddadef259a252d10c799be0f90b3f66756b129f",
+    "triage.py": "cea3820f6e3dbbfaefdab37366def3561344d6205f0b9ea2122fbbec4c965363"
+  },
+  "dataset": {
+    "file": "triage_holdout.jsonl",
+    "split": "holdout",
+    "sha256": "a9fa007f088e4b21286538d0a7c17bb83defee196844259aa115692f9076791b",
+    "source": "Manually reviewed synthetic teaching examples; not customer data.",
+    "note": "Fixed separate holdout; do not tune on its cases."
+  },
+  "limitations": [
+    "Small synthetic dataset; does not establish real-world or production performance.",
+    "Urgency follows this project's teaching policy, not a validated support organization policy.",
+    "Summary correctness is not evaluated by category/urgency metrics.",
+    "A single run does not establish repeated-run reliability or operational latency guarantees."
+  ],
+  "started_at_utc": "2026-11-07T20:59:39.904689+00:00",
+  "metrics": {
+    "total": 30,
+    "attempted": 30,
+    "successful": 30,
+    "failures": 0,
+    "unattempted": 0,
+    "category": {
+      "correct": 23,
+      "total": 30,
+      "accuracy": 0.7666666666666667,
+      "per_class": {
+        "billing": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316,
+          "support": 10
+        },
+        "technical": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714285714285715,
+          "support": 10
+        },
+        "other": {
+          "precision": 0.5882352941176471,
+          "recall": 1.0,
+          "f1": 0.7407407407407407,
+          "support": 10
+        }
+      },
+      "macro_precision": 0.8627450980392157,
+      "macro_recall": 0.7666666666666666,
+      "macro_f1": 0.7531792444073147,
+      "confusion_matrix": {
+        "billing": {
+          "billing": 9,
+          "technical": 0,
+          "other": 1,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "technical": {
+          "billing": 0,
+          "technical": 4,
+          "other": 6,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "other": {
+          "billing": 0,
+          "technical": 0,
+          "other": 10,
+          "__failed__": 0,
+          "__unattempted__": 0
+        }
+      },
+      "confusion_matrix_orientation": "rows=expected; columns=predicted or failure status",
+      "zero_denominator_policy": "Per-class precision/recall/F1 are 0 when undefined; macro uses all labels."
+    },
+    "urgency": {
+      "correct": 13,
+      "total": 30,
+      "accuracy": 0.43333333333333335,
+      "per_class": {
+        "low": {
+          "precision": 0.4,
+          "recall": 0.16666666666666666,
+          "f1": 0.23529411764705882,
+          "support": 12
+        },
+        "normal": {
+          "precision": 0.4583333333333333,
+          "recall": 0.8461538461538461,
+          "f1": 0.5945945945945945,
+          "support": 13
+        },
+        "high": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        }
+      },
+      "macro_precision": 0.28611111111111115,
+      "macro_recall": 0.3376068376068376,
+      "macro_f1": 0.2766295707472178,
+      "confusion_matrix": {
+        "low": {
+          "low": 2,
+          "normal": 9,
+          "high": 1,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "normal": {
+          "low": 2,
+          "normal": 11,
+          "high": 0,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "high": {
+          "low": 1,
+          "normal": 4,
+          "high": 0,
+          "__failed__": 0,
+          "__unattempted__": 0
+        }
+      },
+      "confusion_matrix_orientation": "rows=expected; columns=predicted or failure status",
+      "zero_denominator_policy": "Per-class precision/recall/F1 are 0 when undefined; macro uses all labels."
+    },
+    "joint": {
+      "correct": 8,
+      "total": 30,
+      "accuracy": 0.26666666666666666
+    }
+  },
+  "latency_seconds": {
+    "scope": "Attempted prediction calls, including failures; excludes unattempted cases and setup.",
+    "sample_count": 30,
+    "p50": 1.5349971363320947e-05,
+    "p95": 4.750001244246958e-05,
+    "percentile_method": "linear interpolation at (n-1)*p"
+  },
+  "token_usage": {
+    "responses_with_usage": 0,
+    "successful_responses_without_usage": 30,
+    "totals_for_responses_with_usage": null,
+    "note": "Only returned usage is counted. Missing usage or failed requests does not imply zero billing."
+  },
+  "cost_usd": null,
+  "cost_note": "Not calculated: no explicit verified price schedule is supplied.",
+  "stop_reason": null,
+  "results": [
+    {
+      "id": "holdout-001",
+      "message": "The promised student discount was missing when my card was charged.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "low",
+        "summary": "The promised student discount was missing when my card was charged."
+      },
+      "latency_seconds": 0.0001134999911300838,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-002",
+      "message": "Please provide a statement listing the payments our company completed this year.",
+      "expected": {
+        "category": "billing",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "Please provide a statement listing the payments our company completed this year."
+      },
+      "latency_seconds": 2.239999594166875e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-003",
+      "message": "I received only half of the refund confirmed by your billing team.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "I received only half of the refund confirmed by your billing team."
+      },
+      "latency_seconds": 1.5199999324977398e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-004",
+      "message": "My invoice includes sales tax even though our exemption certificate was accepted.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "My invoice includes sales tax even though our exemption certificate was accepted."
+      },
+      "latency_seconds": 1.3899989426136017e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-005",
+      "message": "I moved to a cheaper subscription tier, but the new bill still uses the old price.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "I moved to a cheaper subscription tier, but the new bill still uses the old price."
+      },
+      "latency_seconds": 1.9799976143985987e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-006",
+      "message": "Could you reissue our paid receipt with the company tax identifier added? There is no payment dispute.",
+      "expected": {
+        "category": "billing",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "Could you reissue our paid receipt with the company tax identifier added? There is no payment dispute."
+      },
+      "latency_seconds": 1.5700003132224083e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-007",
+      "message": "A free trial ended early and my card was debited before the agreed billing date.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "A free trial ended early and my card was debited before the agreed billing date."
+      },
+      "latency_seconds": 1.4099990949034691e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-008",
+      "message": "Every vendor payment from our business account is being rejected, so our entire purchasing team cannot replenish essential stock.",
+      "expected": {
+        "category": "billing",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "Every vendor payment from our business account is being rejected, so our entire purchasing team cannot replenish essential stock."
+      },
+      "latency_seconds": 1.6600009985268116e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-009",
+      "message": "An erroneous debit consumed all of the payroll balance; the whole payroll department is blocked from paying staff.",
+      "expected": {
+        "category": "billing",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "An erroneous debit consumed all of the payroll balance; the whole payroll department is blocked from paying staff."
+      },
+      "latency_seconds": 1.680001150816679e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-010",
+      "message": "The bank shows my transfer succeeded, but my subscription payment is still marked overdue.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "The bank shows my transfer succeeded, but my subscription payment is still marked overdue."
+      },
+      "latency_seconds": 1.6300007700920105e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-011",
+      "message": "Searching for a project I own returns no results even though I can open it from a saved link.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Searching for a project I own returns no results even though I can open it from a saved link."
+      },
+      "latency_seconds": 1.669995253905654e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-012",
+      "message": "Every CSV I export from my account is corrupted and will not open.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Every CSV I export from my account is corrupted and will not open."
+      },
+      "latency_seconds": 1.390004763379693e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-013",
+      "message": "My account no longer receives notification emails when new tasks are assigned.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "low",
+        "summary": "My account no longer receives notification emails when new tasks are assigned."
+      },
+      "latency_seconds": 1.4000048395246267e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-014",
+      "message": "The two-factor codes from my authenticator are rejected during sign-in.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "The two-factor codes from my authenticator are rejected during sign-in."
+      },
+      "latency_seconds": 1.3699987903237343e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-015",
+      "message": "My session expires every thirty seconds while I am editing a document.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "My session expires every thirty seconds while I am editing a document."
+      },
+      "latency_seconds": 1.3899989426136017e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-016",
+      "message": "All regional sales teams have lost access to customer records and none can prepare quotations.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "technical",
+        "urgency": "normal",
+        "summary": "All regional sales teams have lost access to customer records and none can prepare quotations."
+      },
+      "latency_seconds": 1.4499993994832039e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-017",
+      "message": "Every production operator can log in but cannot submit manufacturing orders; the entire factory team is unable to start its work.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "technical",
+        "urgency": "normal",
+        "summary": "Every production operator can log in but cannot submit manufacturing orders; the entire factory team is unable to start its work."
+      },
+      "latency_seconds": 1.5400000847876072e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-018",
+      "message": "The shared document service is down for many users, preventing every affected team from opening the files needed for their work.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "low",
+        "summary": "The shared document service is down for many users, preventing every affected team from opening the files needed for their work."
+      },
+      "latency_seconds": 1.6600009985268116e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-019",
+      "message": "I still have access to my account and would like instructions for replacing the phone used for sign-in codes.",
+      "expected": {
+        "category": "technical",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "technical",
+        "urgency": "normal",
+        "summary": "I still have access to my account and would like instructions for replacing the phone used for sign-in codes."
+      },
+      "latency_seconds": 1.550000160932541e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-020",
+      "message": "Can you send the account-recovery guide for future reference? Nobody is currently locked out.",
+      "expected": {
+        "category": "technical",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "technical",
+        "urgency": "high",
+        "summary": "Can you send the account-recovery guide for future reference? Nobody is currently locked out."
+      },
+      "latency_seconds": 4.4199987314641476e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-021",
+      "message": "May our nonprofit use your logo on an event poster?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "May our nonprofit use your logo on an event poster?"
+      },
+      "latency_seconds": 5.0200033001601696e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-022",
+      "message": "Do you have a student ambassador program?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Do you have a student ambassador program?"
+      },
+      "latency_seconds": 1.4299992471933365e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-023",
+      "message": "Where can I find your latest annual company report?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "low",
+        "summary": "Where can I find your latest annual company report?"
+      },
+      "latency_seconds": 1.2499978765845299e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-024",
+      "message": "How do I arrange an introductory sales demonstration?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "low",
+        "summary": "How do I arrange an introductory sales demonstration?"
+      },
+      "latency_seconds": 1.2899981811642647e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-025",
+      "message": "Could you send a link to the privacy policy?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Could you send a link to the privacy policy?"
+      },
+      "latency_seconds": 1.2200034689158201e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-026",
+      "message": "URGENT QUESTION: do you offer printed product brochures? I am only gathering information.",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "URGENT QUESTION: do you offer printed product brochures? I am only gathering information."
+      },
+      "latency_seconds": 1.529994187876582e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-027",
+      "message": "Is there a public mailing address for sending feedback letters?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Is there a public mailing address for sending feedback letters?"
+      },
+      "latency_seconds": 1.850002445280552e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-028",
+      "message": "Which trade shows will your company attend next spring?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Which trade shows will your company attend next spring?"
+      },
+      "latency_seconds": 1.2699980288743973e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-029",
+      "message": "The physical item delivered to me is a different color from the one I ordered.",
+      "expected": {
+        "category": "other",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "The physical item delivered to me is a different color from the one I ordered."
+      },
+      "latency_seconds": 1.5099998563528061e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "holdout-030",
+      "message": "My parcel arrived damaged, and I need help arranging a replacement.",
+      "expected": {
+        "category": "other",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "My parcel arrived damaged, and I need help arranging a replacement."
+      },
+      "latency_seconds": 1.5400000847876072e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    }
+  ],
+  "finished_at_utc": "2026-11-07T20:59:39.906725+00:00",
+  "run_status": "completed"
+}

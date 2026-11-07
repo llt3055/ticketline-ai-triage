@@ -1,0 +1,30 @@
+Mode: keyword rules. No API requests.
+
+Message: I was charged twice for my subscription.
+Expected: billing | Predicted: billing | CORRECT
+
+Message: Please send me a copy of my invoice.
+Expected: billing | Predicted: billing | CORRECT
+
+Message: I requested a refund but have not received the money.
+Expected: billing | Predicted: other | WRONG
+
+Message: I cannot log in to my account.
+Expected: technical | Predicted: technical | CORRECT
+
+Message: I cannot access my account.
+Expected: technical | Predicted: other | WRONG
+
+Message: The app crashes every time I open it.
+Expected: technical | Predicted: other | WRONG
+
+Message: What are your business hours?
+Expected: other | Predicted: other | CORRECT
+
+Message: Where is your company headquarters?
+Expected: other | Predicted: other | CORRECT
+
+Message: What languages does your customer support team speak?
+Expected: other | Predicted: other | CORRECT
+
+Accuracy on development examples: 6/9

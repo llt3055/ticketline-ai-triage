@@ -1,0 +1,675 @@
+{
+  "report_schema_version": 1,
+  "mode": "rules",
+  "inference_source": "Keyword category baseline; urgency is always normal, not inferred.",
+  "model_id": null,
+  "model_version_note": "No AI model used.",
+  "prompt_sha256": null,
+  "teaching_policy_sha256": "6ce598e9b05c245a378813c724b7b25cbe4059971548b360b4424d651c82a20a",
+  "implementation_sha256": {
+    "ticket_classifier.py": "9a0bd972df2f3ac1c108e6f84db7e944301ea7cb226fe6c517e385f40e4eb35e",
+    "evaluate_triage.py": "d0cdc65f5400c18ce927f7f9984758a558d73efbd3ebd26e5c786f872c02c491"
+  },
+  "dataset": {
+    "file": "triage_development.jsonl",
+    "split": "development",
+    "sha256": "a0779c972fe1dffe73571860c192edeab53403a5b9bcd57817cbc18609ab3c62",
+    "source": "Manually reviewed synthetic teaching examples; not customer data.",
+    "note": "Development examples may be inspected during improvement."
+  },
+  "limitations": [
+    "Small synthetic dataset; does not establish real-world or production performance.",
+    "Urgency follows this project's teaching policy, not a validated support organization policy.",
+    "Summary correctness is not evaluated by category/urgency metrics.",
+    "A single run does not establish repeated-run reliability or operational latency guarantees."
+  ],
+  "started_at_utc": "2026-11-07T20:59:41.003226+00:00",
+  "metrics": {
+    "total": 30,
+    "attempted": 30,
+    "successful": 30,
+    "failures": 0,
+    "unattempted": 0,
+    "category": {
+      "correct": 13,
+      "total": 30,
+      "accuracy": 0.43333333333333335,
+      "per_class": {
+        "billing": {
+          "precision": 1.0,
+          "recall": 0.3,
+          "f1": 0.4615384615384615,
+          "support": 10
+        },
+        "technical": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 10
+        },
+        "other": {
+          "precision": 0.37037037037037035,
+          "recall": 1.0,
+          "f1": 0.5405405405405406,
+          "support": 10
+        }
+      },
+      "macro_precision": 0.4567901234567901,
+      "macro_recall": 0.43333333333333335,
+      "macro_f1": 0.334026334026334,
+      "confusion_matrix": {
+        "billing": {
+          "billing": 3,
+          "technical": 0,
+          "other": 7,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "technical": {
+          "billing": 0,
+          "technical": 0,
+          "other": 10,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "other": {
+          "billing": 0,
+          "technical": 0,
+          "other": 10,
+          "__failed__": 0,
+          "__unattempted__": 0
+        }
+      },
+      "confusion_matrix_orientation": "rows=expected; columns=predicted or failure status",
+      "zero_denominator_policy": "Per-class precision/recall/F1 are 0 when undefined; macro uses all labels."
+    },
+    "urgency": {
+      "correct": 13,
+      "total": 30,
+      "accuracy": 0.43333333333333335,
+      "per_class": {
+        "low": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 12
+        },
+        "normal": {
+          "precision": 0.43333333333333335,
+          "recall": 1.0,
+          "f1": 0.6046511627906976,
+          "support": 13
+        },
+        "high": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        }
+      },
+      "macro_precision": 0.14444444444444446,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.20155038759689922,
+      "confusion_matrix": {
+        "low": {
+          "low": 0,
+          "normal": 12,
+          "high": 0,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "normal": {
+          "low": 0,
+          "normal": 13,
+          "high": 0,
+          "__failed__": 0,
+          "__unattempted__": 0
+        },
+        "high": {
+          "low": 0,
+          "normal": 5,
+          "high": 0,
+          "__failed__": 0,
+          "__unattempted__": 0
+        }
+      },
+      "confusion_matrix_orientation": "rows=expected; columns=predicted or failure status",
+      "zero_denominator_policy": "Per-class precision/recall/F1 are 0 when undefined; macro uses all labels."
+    },
+    "joint": {
+      "correct": 4,
+      "total": 30,
+      "accuracy": 0.13333333333333333
+    }
+  },
+  "latency_seconds": {
+    "scope": "Attempted prediction calls, including failures; excludes unattempted cases and setup.",
+    "sample_count": 30,
+    "p50": 2.4499895516783e-06,
+    "p95": 5.60504267923533e-06,
+    "percentile_method": "linear interpolation at (n-1)*p"
+  },
+  "token_usage": {
+    "responses_with_usage": 0,
+    "successful_responses_without_usage": 30,
+    "totals_for_responses_with_usage": null,
+    "note": "Only returned usage is counted. Missing usage or failed requests does not imply zero billing."
+  },
+  "cost_usd": null,
+  "cost_note": "Not calculated: no explicit verified price schedule is supplied.",
+  "stop_reason": null,
+  "results": [
+    {
+      "id": "dev-001",
+      "message": "I was charged twice for this month's subscription.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "I was charged twice for this month's subscription."
+      },
+      "latency_seconds": 5.670002428814769e-05,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-002",
+      "message": "Please email a copy of last month's invoice for our records.",
+      "expected": {
+        "category": "billing",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "Please email a copy of last month's invoice for our records."
+      },
+      "latency_seconds": 7.00005330145359e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-003",
+      "message": "My refund was approved, but the money has not arrived.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "My refund was approved, but the money has not arrived."
+      },
+      "latency_seconds": 3.500026650726795e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-004",
+      "message": "The amount on my bill is higher than the price I agreed to.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "The amount on my bill is higher than the price I agreed to."
+      },
+      "latency_seconds": 2.500019036233425e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-005",
+      "message": "The card payment for my personal subscription was declined.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "The card payment for my personal subscription was declined."
+      },
+      "latency_seconds": 2.7999631129205227e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-006",
+      "message": "Could you send a receipt for a payment that already completed?",
+      "expected": {
+        "category": "billing",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Could you send a receipt for a payment that already completed?"
+      },
+      "latency_seconds": 3.00002284348011e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-007",
+      "message": "I cancelled my subscription yesterday and was billed again today.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "I cancelled my subscription yesterday and was billed again today."
+      },
+      "latency_seconds": 2.5999615900218487e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-008",
+      "message": "All company purchasing cards are being declined, so every employee is unable to place supply orders.",
+      "expected": {
+        "category": "billing",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "All company purchasing cards are being declined, so every employee is unable to place supply orders."
+      },
+      "latency_seconds": 2.500019036233425e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-009",
+      "message": "A duplicate debit emptied our operating account; our entire delivery team cannot buy fuel to complete today's routes.",
+      "expected": {
+        "category": "billing",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "A duplicate debit emptied our operating account; our entire delivery team cannot buy fuel to complete today's routes."
+      },
+      "latency_seconds": 2.600019797682762e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-010",
+      "message": "I paid the invoice, but it is still marked unpaid.",
+      "expected": {
+        "category": "billing",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "billing",
+        "urgency": "normal",
+        "summary": "I paid the invoice, but it is still marked unpaid."
+      },
+      "latency_seconds": 2.400018274784088e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-011",
+      "message": "I cannot sign in even though I reset my password.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "I cannot sign in even though I reset my password."
+      },
+      "latency_seconds": 2.500019036233425e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-012",
+      "message": "The mobile app crashes when I open my profile.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "The mobile app crashes when I open my profile."
+      },
+      "latency_seconds": 2.500019036233425e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-013",
+      "message": "My dashboard displays a blank screen instead of my saved projects.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "My dashboard displays a blank screen instead of my saved projects."
+      },
+      "latency_seconds": 2.400018274784088e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-014",
+      "message": "The upload button returns an error whenever I select a file.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "The upload button returns an error whenever I select a file."
+      },
+      "latency_seconds": 2.4999608285725117e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-015",
+      "message": "I cannot access my account on my laptop.",
+      "expected": {
+        "category": "technical",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "I cannot access my account on my laptop."
+      },
+      "latency_seconds": 2.300017513334751e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-016",
+      "message": "Our entire support team cannot sign in, so nobody can answer customer tickets.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Our entire support team cannot sign in, so nobody can answer customer tickets."
+      },
+      "latency_seconds": 2.500019036233425e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-017",
+      "message": "Every warehouse operator gets a server error when opening the dispatch app, stopping all shipments.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Every warehouse operator gets a server error when opening the dispatch app, stopping all shipments."
+      },
+      "latency_seconds": 2.6999623514711857e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-018",
+      "message": "Many customers are unable to open the checkout page and cannot place orders.",
+      "expected": {
+        "category": "technical",
+        "urgency": "high"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Many customers are unable to open the checkout page and cannot place orders."
+      },
+      "latency_seconds": 2.400018274784088e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-019",
+      "message": "Please send the instructions for resetting a password; my account currently works.",
+      "expected": {
+        "category": "technical",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Please send the instructions for resetting a password; my account currently works."
+      },
+      "latency_seconds": 2.300017513334751e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-020",
+      "message": "Where is the guide to enabling two-factor authentication for sign-in? Nothing is broken.",
+      "expected": {
+        "category": "technical",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Where is the guide to enabling two-factor authentication for sign-in? Nothing is broken."
+      },
+      "latency_seconds": 2.3999600671231747e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-021",
+      "message": "What are your customer support opening hours?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "What are your customer support opening hours?"
+      },
+      "latency_seconds": 2.400018274784088e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-022",
+      "message": "Where is your company headquarters located?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Where is your company headquarters located?"
+      },
+      "latency_seconds": 2.300017513334751e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-023",
+      "message": "What languages does your customer support team speak?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "What languages does your customer support team speak?"
+      },
+      "latency_seconds": 2.300017513334751e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-024",
+      "message": "How can I subscribe to your company newsletter?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "How can I subscribe to your company newsletter?"
+      },
+      "latency_seconds": 3.900029696524143e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-025",
+      "message": "Could you share the agenda for the upcoming user conference?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Could you share the agenda for the upcoming user conference?"
+      },
+      "latency_seconds": 2.3999600671231747e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-026",
+      "message": "URGENT: please tell me the address of your public website. No service is affected.",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "URGENT: please tell me the address of your public website. No service is affected."
+      },
+      "latency_seconds": 2.400018274784088e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-027",
+      "message": "Who should I contact about a partnership proposal?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Who should I contact about a partnership proposal?"
+      },
+      "latency_seconds": 2.300017513334751e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-028",
+      "message": "Where can I read your accessibility statement?",
+      "expected": {
+        "category": "other",
+        "urgency": "low"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "Where can I read your accessibility statement?"
+      },
+      "latency_seconds": 2.300017513334751e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-029",
+      "message": "My package has not arrived, and I need someone to check the delivery.",
+      "expected": {
+        "category": "other",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "My package has not arrived, and I need someone to check the delivery."
+      },
+      "latency_seconds": 2.400018274784088e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    },
+    {
+      "id": "dev-030",
+      "message": "I need help with my order, but I do not know what the problem is yet.",
+      "expected": {
+        "category": "other",
+        "urgency": "normal"
+      },
+      "prediction": {
+        "category": "other",
+        "urgency": "normal",
+        "summary": "I need help with my order, but I do not know what the problem is yet."
+      },
+      "latency_seconds": 2.2999593056738377e-06,
+      "token_usage": null,
+      "error": null,
+      "status": "success"
+    }
+  ],
+  "finished_at_utc": "2026-11-07T20:59:41.003474+00:00",
+  "run_status": "completed"
+}

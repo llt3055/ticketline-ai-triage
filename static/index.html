@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Ticketline — Support triage</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span>ticketline <span class="brand-sub">/ triage workspace</span></span></div>
+    <div class="top-actions"><span class="top-note"><span class="live-dot"></span> Human-reviewed workflow</span><button id="logout-button" class="logout-button" type="button" hidden>Sign out</button></div>
+  </header>
+
+  <main class="shell">
+    <div class="page-heading">
+      <div><p class="eyebrow">SUPPORT OPERATIONS</p><h1>Make every ticket count.</h1><p class="lede">Organize incoming requests, review suggested triage, and keep the team moving.</p></div>
+      <div class="heading-tag">WORKSPACE <span>01</span></div>
+    </div>
+
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <section id="login-panel" class="panel login-panel" aria-labelledby="login-title" hidden>
+      <p class="eyebrow">PRIVATE WORKSPACE</p>
+      <h2 id="login-title">Welcome back.</h2>
+      <p class="muted">Enter the workspace access token configured by your administrator.</p>
+      <form id="login-form">
+        <label for="workspace-token">Workspace access token</label>
+        <input id="workspace-token" type="password" autocomplete="off" required>
+        <p class="field-help">This is the workspace token, not an OpenAI API key.</p>
+        <button class="button primary" id="login-button" type="submit">Sign in <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
+    <div id="workspace-content" hidden>
+    <section class="stats" aria-label="Ticket overview">
+      <div class="stat"><span>Total tickets</span><strong id="stat-total">—</strong><small>All requests</small></div>
+      <div class="stat"><span>Needs review</span><strong id="stat-pending">—</strong><small>Awaiting a person</small></div>
+      <div class="stat"><span>Approved</span><strong id="stat-approved">—</strong><small>Reviewed by the team</small></div>
+      <div class="stat"><span>High urgency</span><strong id="stat-high">—</strong><small>Across all tickets</small></div>
+    </section>
+
+    <div class="workspace">
+      <section class="panel compose" aria-labelledby="new-title">
+        <div class="section-top"><div><p class="eyebrow">01 / INTAKE</p><h2 id="new-title">New ticket</h2></div><span class="section-icon" aria-hidden="true">↗</span></div>
+        <p class="muted">Add a support request to create a triage suggestion.</p>
+        <form id="create-form">
+          <label for="message">Ticket message</label>
+          <textarea id="message" name="message" rows="5" maxlength="5000" required placeholder="Describe the issue or request…"></textarea>
+          <div class="field-help">Use sample text; avoid personal or sensitive information.</div>
+          <label for="mode">Processing mode</label>
+          <select id="mode" name="mode"><option value="demo">Demo — simulated rules</option><option value="live" disabled>Live AI — unavailable</option></select>
+          <p id="mode-help" class="mode-help">Demo uses deterministic rules. It does not call an AI model.</p>
+          <button class="button primary full" type="submit" id="create-button">Create suggestion <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <section class="panel inbox" aria-labelledby="inbox-title">
+        <div class="section-top"><div><p class="eyebrow">02 / QUEUE</p><h2 id="inbox-title">Ticket inbox</h2></div><span id="filtered-count" class="count-pill">0 shown</span></div>
+        <p class="muted">Select a ticket to inspect and review its suggestion.</p>
+        <div class="queue-actions"><button class="button secondary" type="button" id="seed-button">Load sample tickets</button><button class="button secondary" type="button" id="export-button">Export CSV</button></div>
+        <div class="import-box">
+          <label for="import-file">Import tickets from CSV</label>
+          <div class="import-controls"><input id="import-file" type="file" accept=".csv,text/csv"><button class="button secondary" type="button" id="import-button">Import CSV</button></div>
+          <p class="field-help">Include a <strong>message</strong> column. Up to 25 tickets per file, 50 KB per file, and 5,000 characters per message. Uses the processing mode selected above. Live import stops at the first provider error.</p>
+        </div>
+        <div class="filters" aria-label="Filter tickets">
+          <div><label for="filter-category">Category</label><select id="filter-category"><option value="">All categories</option><option value="billing">Billing</option><option value="technical">Technical</option><option value="other">Other</option></select></div>
+          <div><label for="filter-urgency">Urgency</label><select id="filter-urgency"><option value="">All urgency</option><option value="high">High</option><option value="normal">Normal</option><option value="low">Low</option></select></div>
+          <div><label for="filter-review">Review</label><select id="filter-review"><option value="">All statuses</option><option value="pending">Pending</option><option value="approved">Approved</option></select></div>
+        </div>
+        <div id="ticket-list" class="ticket-list" aria-live="polite"><p class="empty">Loading tickets…</p></div>
+      </section>
+    </div>
+
+    <section class="panel detail-panel" aria-labelledby="detail-title">
+      <div class="section-top"><div><p class="eyebrow">03 / REVIEW</p><h2 id="detail-title">Ticket details</h2></div><span class="section-icon" aria-hidden="true">✳</span></div>
+      <div id="detail-empty" class="detail-empty"><span aria-hidden="true">◌</span><p>Choose a ticket from the inbox to see its details.</p></div>
+      <div id="detail" hidden>
+        <div class="detail-header"><div><span id="detail-id" class="detail-id"></span><h3 id="detail-message"></h3></div><div id="detail-badges" class="badge-row"></div></div>
+        <p id="detail-meta" class="metadata"></p>
+        <div id="detail-error" class="error-box" role="alert" hidden></div>
+        <p id="review-help" class="mode-help" hidden></p>
+        <form id="review-form">
+          <div class="review-grid">
+            <div><label for="edit-category">Category</label><select id="edit-category" required><option value="billing">Billing</option><option value="technical">Technical</option><option value="other">Other</option></select></div>
+            <div><label for="edit-urgency">Urgency</label><select id="edit-urgency" required><option value="low">Low</option><option value="normal">Normal</option><option value="high">High</option></select></div>
+            <div><label for="edit-status">Review status</label><select id="edit-status"><option value="pending">Pending</option><option value="approved">Approved</option></select></div>
+          </div>
+          <label for="edit-summary">Summary</label><textarea id="edit-summary" rows="3" maxlength="1000" required></textarea>
+          <p class="field-help">Check the suggestion and make any corrections before approving.</p>
+          <div class="actions"><button class="button primary" type="submit" id="save-button">Save review <span aria-hidden="true">→</span></button><button class="button secondary" type="button" id="retry-button">Retry suggestion</button><span class="field-help">Retry uses the selected processing mode above.</span></div>
+        </form>
+        <div class="history"><h3>Activity history</h3><div id="history-list"></div></div>
+      </div>
+    </section>
+    </div>
+    <footer>Built for thoughtful support <span>·</span> Suggestions require human review</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{"id":"holdout-001","message":"The promised student discount was missing when my card was charged.","category":"billing","urgency":"normal"}
+{"id":"holdout-002","message":"Please provide a statement listing the payments our company completed this year.","category":"billing","urgency":"low"}
+{"id":"holdout-003","message":"I received only half of the refund confirmed by your billing team.","category":"billing","urgency":"normal"}
+{"id":"holdout-004","message":"My invoice includes sales tax even though our exemption certificate was accepted.","category":"billing","urgency":"normal"}
+{"id":"holdout-005","message":"I moved to a cheaper subscription tier, but the new bill still uses the old price.","category":"billing","urgency":"normal"}
+{"id":"holdout-006","message":"Could you reissue our paid receipt with the company tax identifier added? There is no payment dispute.","category":"billing","urgency":"low"}
+{"id":"holdout-007","message":"A free trial ended early and my card was debited before the agreed billing date.","category":"billing","urgency":"normal"}
+{"id":"holdout-008","message":"Every vendor payment from our business account is being rejected, so our entire purchasing team cannot replenish essential stock.","category":"billing","urgency":"high"}
+{"id":"holdout-009","message":"An erroneous debit consumed all of the payroll balance; the whole payroll department is blocked from paying staff.","category":"billing","urgency":"high"}
+{"id":"holdout-010","message":"The bank shows my transfer succeeded, but my subscription payment is still marked overdue.","category":"billing","urgency":"normal"}
+{"id":"holdout-011","message":"Searching for a project I own returns no results even though I can open it from a saved link.","category":"technical","urgency":"normal"}
+{"id":"holdout-012","message":"Every CSV I export from my account is corrupted and will not open.","category":"technical","urgency":"normal"}
+{"id":"holdout-013","message":"My account no longer receives notification emails when new tasks are assigned.","category":"technical","urgency":"normal"}
+{"id":"holdout-014","message":"The two-factor codes from my authenticator are rejected during sign-in.","category":"technical","urgency":"normal"}
+{"id":"holdout-015","message":"My session expires every thirty seconds while I am editing a document.","category":"technical","urgency":"normal"}
+{"id":"holdout-016","message":"All regional sales teams have lost access to customer records and none can prepare quotations.","category":"technical","urgency":"high"}
+{"id":"holdout-017","message":"Every production operator can log in but cannot submit manufacturing orders; the entire factory team is unable to start its work.","category":"technical","urgency":"high"}
+{"id":"holdout-018","message":"The shared document service is down for many users, preventing every affected team from opening the files needed for their work.","category":"technical","urgency":"high"}
+{"id":"holdout-019","message":"I still have access to my account and would like instructions for replacing the phone used for sign-in codes.","category":"technical","urgency":"low"}
+{"id":"holdout-020","message":"Can you send the account-recovery guide for future reference? Nobody is currently locked out.","category":"technical","urgency":"low"}
+{"id":"holdout-021","message":"May our nonprofit use your logo on an event poster?","category":"other","urgency":"low"}
+{"id":"holdout-022","message":"Do you have a student ambassador program?","category":"other","urgency":"low"}
+{"id":"holdout-023","message":"Where can I find your latest annual company report?","category":"other","urgency":"low"}
+{"id":"holdout-024","message":"How do I arrange an introductory sales demonstration?","category":"other","urgency":"low"}
+{"id":"holdout-025","message":"Could you send a link to the privacy policy?","category":"other","urgency":"low"}
+{"id":"holdout-026","message":"URGENT QUESTION: do you offer printed product brochures? I am only gathering information.","category":"other","urgency":"low"}
+{"id":"holdout-027","message":"Is there a public mailing address for sending feedback letters?","category":"other","urgency":"low"}
+{"id":"holdout-028","message":"Which trade shows will your company attend next spring?","category":"other","urgency":"low"}
+{"id":"holdout-029","message":"The physical item delivered to me is a different color from the one I ordered.","category":"other","urgency":"normal"}
+{"id":"holdout-030","message":"My parcel arrived damaged, and I need help arranging a replacement.","category":"other","urgency":"normal"}

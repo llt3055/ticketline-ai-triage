@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements-lock.txt
+      - name: Run offline tests
+        run: python -m unittest discover -s tests -v
+      - name: Run deterministic evaluation
+        run: python evaluate_triage.py --mode demo --split development
+      - name: Check browser JavaScript syntax
+        run: |
+          if command -v node >/dev/null 2>&1; then
+            find static -type f -name '*.js' -print0 | xargs -0 -r -n 1 node --check
+          else
+            echo 'Node is unavailable; JavaScript syntax check skipped.'
+          fi
+
+  docker-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build container image
+        run: docker build -t ticketline-ci .
+      - name: Start container
+        run: |
+          docker run -d --name ticketline-smoke \
+            -e TRIAGE_ACCESS_TOKEN=ci-demo-token-not-a-secret \
+            -p 127.0.0.1:8000:8000 ticketline-ci
+      - name: Verify health and access control
+        run: |
+          curl --fail --silent --show-error --retry 20 --retry-connrefused --retry-delay 1 http://127.0.0.1:8000/health
+          test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/api/tickets)" = 401
+          test "$(curl --silent -o /dev/null -w '%{http_code}' -H 'X-Access-Token: ci-demo-token-not-a-secret' http://127.0.0.1:8000/api/tickets)" = 200
+      - name: Show container logs on failure
+        if: failure()
+        run: docker logs ticketline-smoke || true
+      - name: Stop container
+        if: always()
+        run: docker rm -f ticketline-smoke || true
