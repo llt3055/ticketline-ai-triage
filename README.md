@@ -2,6 +2,12 @@
 
 A working support review application built with **FastAPI, SQLite, Pydantic and plain JavaScript**. Submit or import tickets, generate a category/urgency/summary suggestion, correct it, approve it, and inspect the history. Original suggestions remain available after review.
 
+[![CI](https://github.com/llt3055/ticketline-ai-triage/actions/workflows/ci.yml/badge.svg)](https://github.com/llt3055/ticketline-ai-triage/actions/workflows/ci.yml)
+
+[Public showcase and recorded walkthrough](https://llt3055.github.io/ticketline-ai-triage/) · [Download a release](https://github.com/llt3055/ticketline-ai-triage/releases)
+
+The showcase is a static project page. Run the application locally using the instructions below for interactive ticket processing.
+
 **Try it without credentials:** the explicitly labeled demo mode uses deterministic rules. **Live mode:** the server calls the OpenAI Responses API using schema-constrained output. The browser never receives or asks for the provider API key.
 
 ![Ticketline workspace](docs/assets/dashboard.png)

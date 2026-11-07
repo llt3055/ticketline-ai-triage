@@ -12,7 +12,7 @@ dependencies:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
 .\.venv\Scripts\python.exe run_server.py
 ```
 
@@ -50,10 +50,10 @@ $env:TRIAGE_ACCESS_TOKEN = Read-Host 'Enter a workspace access token'
 docker run --rm -p 127.0.0.1:8000:8000 -e TRIAGE_ACCESS_TOKEN -v ticket-triage-data:/app/data ticket-triage
 ```
 
-The Docker build has not been verified in this environment because the Docker
-CLI is unavailable. A Docker build and access-control smoke test are configured
-in CI; check the latest CI result before treating that remote verification as
-complete.
+The Docker image build and health/access-control smoke test passed in
+[GitHub Actions](https://github.com/llt3055/ticketline-ai-triage/actions/runs/42414862025).
+Docker was unavailable on the Windows development machine; this container
+verification was performed on the CI Linux runner.
 
 The named volume keeps SQLite data between container runs. The container binds
 to a non-loopback address internally, so the startup guard requires the token

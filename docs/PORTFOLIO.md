@@ -42,4 +42,9 @@ Be prepared to explain the access model, the difference between demo and live
 mode, how the evaluation was designed, and the high-urgency failure above. A
 personal project does not demonstrate enterprise deployment, user adoption,
 business impact, or live-model performance unless those are independently
-verified. Add a repository or demo link only after it exists.
+verified.
+
+Published links:
+
+- [Source repository](https://github.com/llt3055/ticketline-ai-triage)
+- [Static showcase and recorded walkthrough](https://llt3055.github.io/ticketline-ai-triage/)

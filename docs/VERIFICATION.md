@@ -29,9 +29,15 @@ retained separately, attributed to the user's terminal screenshot.
 
 ## Deployment scope
 
-The dashboard runs locally. A GitHub CI pipeline checks tests, deterministic
-development evaluation, JavaScript syntax and a Docker health/auth smoke test.
-The Docker CLI was unavailable on the development machine, so container
-verification depends on that remote CI result. A managed public cloud service
-has not been provisioned. See `docs/DEMO.md` for deployment configuration and
-its persistent-storage and HTTPS requirements.
+The dashboard runs locally. [GitHub Actions run 42414862025](https://github.com/llt3055/ticketline-ai-triage/actions/runs/42414862025)
+passed all 31 tests, deterministic development evaluation, JavaScript syntax,
+Docker image build, and the container health/access-control smoke test on Linux.
+The Docker CLI was unavailable on the Windows development machine.
+
+The [public GitHub Pages showcase](https://llt3055.github.io/ticketline-ai-triage/)
+hosts screenshots and a recorded deterministic walkthrough. It does not run
+the backend or send model requests. Chrome verification confirmed that the page
+and screenshot loaded and the 57-second WebM had playable metadata with no
+media error. A managed public backend service has not
+been provisioned. See `docs/DEMO.md` for deployment configuration and its
+persistent-storage and HTTPS requirements.
