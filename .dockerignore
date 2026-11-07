@@ -10,7 +10,11 @@ __pycache__
 .env
 .env.*
 !.env.example
-data
+data/*.db
+data/*.db-*
+data/*.sqlite*
+output
+.playwright-cli
 *.db
 *.db-*
 *.sqlite

@@ -5,12 +5,15 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
           cache: pip
@@ -31,7 +34,7 @@ jobs:
   docker-smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build container image
         run: docker build -t ticketline-ci .
       - name: Start container
@@ -41,7 +44,7 @@ jobs:
             -p 127.0.0.1:8000:8000 ticketline-ci
       - name: Verify health and access control
         run: |
-          curl --fail --silent --show-error --retry 20 --retry-connrefused --retry-delay 1 http://127.0.0.1:8000/health
+          curl --fail --silent --show-error --retry 20 --retry-all-errors --retry-delay 1 --retry-max-time 45 --max-time 3 http://127.0.0.1:8000/health
           test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/api/tickets)" = 401
           test "$(curl --silent -o /dev/null -w '%{http_code}' -H 'X-Access-Token: ci-demo-token-not-a-secret' http://127.0.0.1:8000/api/tickets)" = 200
       - name: Show container logs on failure
